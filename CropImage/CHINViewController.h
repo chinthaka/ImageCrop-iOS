@@ -7,7 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CropingImageViewControl.h"
 
-@interface CHINViewController : UIViewController
+@interface CHINViewController : UIViewController <CropingImageViewControllerDelegate>
+
+@property (nonatomic, strong) CropingImageViewControl *cropingImageViewCon;
+@property (nonatomic, strong) IBOutlet UIImageView *imageView;
+
+
+-(IBAction)startToCrop:(id)sender;
 
 @end

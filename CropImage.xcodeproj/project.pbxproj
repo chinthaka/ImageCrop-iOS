@@ -18,6 +18,10 @@
 		2B063F6E16412839004ECF97 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B063F6D16412839004ECF97 /* Default-568h@2x.png */; };
 		2B063F7116412839004ECF97 /* CHINViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B063F7016412839004ECF97 /* CHINViewController.m */; };
 		2B063F7416412839004ECF97 /* CHINViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B063F7216412839004ECF97 /* CHINViewController.xib */; };
+		2B063F8B16412A78004ECF97 /* CropingArea.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B063F8316412A78004ECF97 /* CropingArea.m */; };
+		2B063F8C16412A78004ECF97 /* CropingImageViewControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B063F8516412A78004ECF97 /* CropingImageViewControl.m */; };
+		2B063F8F16412A78004ECF97 /* CropingImageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B063F8A16412A78004ECF97 /* CropingImageView.xib */; };
+		2B063F9116412D7A004ECF97 /* Apple.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B063F9016412D7A004ECF97 /* Apple.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +41,12 @@
 		2B063F6F16412839004ECF97 /* CHINViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CHINViewController.h; sourceTree = "<group>"; };
 		2B063F7016412839004ECF97 /* CHINViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CHINViewController.m; sourceTree = "<group>"; };
 		2B063F7316412839004ECF97 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/CHINViewController.xib; sourceTree = "<group>"; };
+		2B063F8216412A78004ECF97 /* CropingArea.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CropingArea.h; sourceTree = "<group>"; };
+		2B063F8316412A78004ECF97 /* CropingArea.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CropingArea.m; sourceTree = "<group>"; };
+		2B063F8416412A78004ECF97 /* CropingImageViewControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CropingImageViewControl.h; sourceTree = "<group>"; };
+		2B063F8516412A78004ECF97 /* CropingImageViewControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CropingImageViewControl.m; sourceTree = "<group>"; };
+		2B063F8A16412A78004ECF97 /* CropingImageView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CropingImageView.xib; sourceTree = "<group>"; };
+		2B063F9016412D7A004ECF97 /* Apple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Apple.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +66,7 @@
 		2B063F4816412839004ECF97 = {
 			isa = PBXGroup;
 			children = (
+				2B063F7A16412854004ECF97 /* CropLibrary */,
 				2B063F5D16412839004ECF97 /* CropImage */,
 				2B063F5616412839004ECF97 /* Frameworks */,
 				2B063F5416412839004ECF97 /* Products */,
@@ -96,6 +107,7 @@
 		2B063F5E16412839004ECF97 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				2B063F9016412D7A004ECF97 /* Apple.png */,
 				2B063F5F16412839004ECF97 /* CropImage-Info.plist */,
 				2B063F6016412839004ECF97 /* InfoPlist.strings */,
 				2B063F6316412839004ECF97 /* main.m */,
@@ -105,6 +117,26 @@
 				2B063F6D16412839004ECF97 /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		2B063F7A16412854004ECF97 /* CropLibrary */ = {
+			isa = PBXGroup;
+			children = (
+				2B063F8116412A78004ECF97 /* Classes */,
+				2B063F8A16412A78004ECF97 /* CropingImageView.xib */,
+			);
+			name = CropLibrary;
+			sourceTree = "<group>";
+		};
+		2B063F8116412A78004ECF97 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				2B063F8216412A78004ECF97 /* CropingArea.h */,
+				2B063F8316412A78004ECF97 /* CropingArea.m */,
+				2B063F8416412A78004ECF97 /* CropingImageViewControl.h */,
+				2B063F8516412A78004ECF97 /* CropingImageViewControl.m */,
+			);
+			path = Classes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -164,6 +196,8 @@
 				2B063F6C16412839004ECF97 /* Default@2x.png in Resources */,
 				2B063F6E16412839004ECF97 /* Default-568h@2x.png in Resources */,
 				2B063F7416412839004ECF97 /* CHINViewController.xib in Resources */,
+				2B063F8F16412A78004ECF97 /* CropingImageView.xib in Resources */,
+				2B063F9116412D7A004ECF97 /* Apple.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -177,6 +211,8 @@
 				2B063F6416412839004ECF97 /* main.m in Sources */,
 				2B063F6816412839004ECF97 /* CHINAppDelegate.m in Sources */,
 				2B063F7116412839004ECF97 /* CHINViewController.m in Sources */,
+				2B063F8B16412A78004ECF97 /* CropingArea.m in Sources */,
+				2B063F8C16412A78004ECF97 /* CropingImageViewControl.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -224,7 +260,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
@@ -245,7 +281,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -255,10 +291,12 @@
 		2B063F7816412839004ECF97 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Chinthaka Kumarasiri (3VEJR8C829)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CropImage/CropImage-Prefix.pch";
 				INFOPLIST_FILE = "CropImage/CropImage-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "3FA4A09B-EC39-485E-8AF9-FFF51CBF534B";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -266,10 +304,12 @@
 		2B063F7916412839004ECF97 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Chinthaka Kumarasiri (3VEJR8C829)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CropImage/CropImage-Prefix.pch";
 				INFOPLIST_FILE = "CropImage/CropImage-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "3FA4A09B-EC39-485E-8AF9-FFF51CBF534B";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
