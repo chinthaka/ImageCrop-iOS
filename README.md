@@ -12,6 +12,8 @@ This is a simple library for crop an image by selecting the area using your fing
 
 **Objective-C ARC enabled**
 
+(https://github.com/chinthaka/ImageCrop-iOS/blob/master/screen1.PNG)
+
 Quick Start
 
 1. Copy the `CropImage` folder into your project
