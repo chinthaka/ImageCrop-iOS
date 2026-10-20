@@ -8,7 +8,7 @@ This simple iOS custom view controller allows user to crop an image
 
 Overview
 --
-This is a simple library for crop an image by selecting the area using your finger. ImageCrop is a Apache Licensed iOS library support deployment to iOS 5.0, and has a simpler interface.
+This is a simple library for crop an image by selecting the area using your finger. ImageCrop is an iOS library support deployment to iOS 10.0, and has a simpler interface.
 
 **Objective-C ARC enabled**
 
