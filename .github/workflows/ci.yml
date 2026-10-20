@@ -1,0 +1,110 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    name: Test package and build sample
+    runs-on: macos-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Choose an iPhone simulator
+        id: simulator
+        run: |
+          set -euo pipefail
+          python3 - <<'PY' >> "$GITHUB_OUTPUT"
+          import json
+          import subprocess
+          import sys
+
+          raw = subprocess.check_output(["xcrun", "simctl", "list", "devices", "available", "-j"])
+          devices = json.loads(raw)["devices"]
+          candidates = []
+          for runtime, entries in devices.items():
+              marker = "SimRuntime.iOS-"
+              if marker not in runtime:
+                  continue
+              version = runtime.rsplit(marker, 1)[-1].replace("-", ".")
+              for device in entries:
+                  if not device.get("isAvailable", True):
+                      continue
+                  name = device.get("name", "")
+                  if not name.startswith("iPhone"):
+                      continue
+                  candidates.append((version, name, device["udid"]))
+
+          if not candidates:
+              sys.exit("No available iPhone simulator")
+
+          def version_key(value):
+              return [int(part) if part.isdigit() else 0 for part in value.split(".")]
+
+          newest = max(candidates, key=lambda item: version_key(item[0]))[0]
+          pool = [item for item in candidates if item[0] == newest]
+
+          def rank(name):
+              lowered = name.lower()
+              extras = ("pro", "plus", "max", "mini", "se", "air")
+              return 1 if any(word in lowered for word in extras) else 0
+
+          pool.sort(key=lambda item: (rank(item[1]), item[1]))
+          version, name, udid = pool[0]
+          print(f"Selected {name} on iOS {version} ({udid})", file=sys.stderr)
+          print(f"udid={udid}")
+          print(f"name={name}")
+          PY
+
+      - name: Test ImageCrop
+        run: |
+          set -euo pipefail
+          # xcodebuild uses CropImage.xcodeproj when that project is in the
+          # working directory, so the package scheme is not visible until the
+          # project is moved aside.
+          mkdir -p "$RUNNER_TEMP/hidden"
+          mv CropImage.xcodeproj "$RUNNER_TEMP/hidden/"
+          restore_project() {
+            if [ -d "$RUNNER_TEMP/hidden/CropImage.xcodeproj" ]; then
+              mv "$RUNNER_TEMP/hidden/CropImage.xcodeproj" .
+            fi
+          }
+          trap restore_project EXIT
+          xcodebuild test \
+            -scheme ImageCrop \
+            -destination "platform=iOS Simulator,id=${{ steps.simulator.outputs.udid }}" \
+            -only-testing:ImageCropTests \
+            -resultBundlePath "$RUNNER_TEMP/ImageCrop.xcresult" \
+            -derivedDataPath "$RUNNER_TEMP/DerivedDataPackage" \
+            CODE_SIGNING_ALLOWED=NO
+
+      - name: Build sample app
+        run: |
+          set -euo pipefail
+          xcodebuild build \
+            -project CropImage.xcodeproj \
+            -scheme CropImage \
+            -destination "platform=iOS Simulator,id=${{ steps.simulator.outputs.udid }}" \
+            -derivedDataPath "$RUNNER_TEMP/DerivedDataApp" \
+            CODE_SIGNING_ALLOWED=NO \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGN_IDENTITY=""
+
+      - name: Upload test results
+        if: failure()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: imagecrop-xcresult
+          path: ${{ runner.temp }}/ImageCrop.xcresult
+          if-no-files-found: ignore
