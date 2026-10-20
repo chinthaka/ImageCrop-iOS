@@ -43,7 +43,3 @@ Include the following line to make the library available to your code
     By calling following delegate you will be able to get the cropped image.
 
         - (void)resultingImage:(UIImage *)image
-
-LICENSE
-
-Except as otherwise noted, this library for iOS is licensed under the Apache License, Version 2.0 (http://www.apache.org/licenses/LICENSE-2.0.html).
