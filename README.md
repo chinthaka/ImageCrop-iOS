@@ -10,6 +10,7 @@ Requires iOS 15 or later. Distribute it with Swift Package Manager, or build the
 
 ![ScreenShot](https://github.com/chinthaka/ImageCrop-iOS/raw/master/shots/screen2.PNG)
 
+
 ## Swift Package Manager
 
 Add the package `https://github.com/chinthaka/ImageCrop-iOS` from version 2.0.0, then depend on the `ImageCrop` product.
